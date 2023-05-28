@@ -12,17 +12,21 @@
 	<title>Login</title>
 </h:head>
 <h:body>
-	<h:form>
-		<h:panelGrid columns="2">
+	<h:form id="login_form">
+		<h2>Login</h2>
+
+		<p:panelGrid columns="2">
 			<h:outputLabel for="email" value="Email:" />
-			<h:inputText id="email" />
+			<p:inputText id="email" value="#{loginBean.email}"
+				required="true" />
 
 			<h:outputLabel for="senha" value="Senha:" />
-			<h:inputSecret id="senha" />
+			<p:password id="senha" value="#{loginBean.senha}" required="true" />
 
-			<h:commandButton value="Entrar" />
-			<h:button value="Cadastrar" outcome="cadastro_usuario"/>
-		</h:panelGrid>
+			<p:commandButton value="Entrar" id="btnEntrar"
+				action="#{loginBean.login}" update="login_form" />
+			<h:button value="Cadastrar" outcome="cadastro_usuario" />
+		</p:panelGrid>
 	</h:form>
 </h:body>
 </html>
