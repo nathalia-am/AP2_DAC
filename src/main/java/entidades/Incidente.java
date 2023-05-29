@@ -1,17 +1,20 @@
 package entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Incidente {
+public class Incidente implements Serializable {
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -55,6 +58,10 @@ public class Incidente {
 	@Column(name = "Data_Registro")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
+	
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
 	public Integer getId() {
 		return id;

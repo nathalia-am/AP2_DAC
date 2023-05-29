@@ -18,6 +18,7 @@ public class LoginBean {
 
 	private String email;
 	private String senha;
+	private Usuario usuarioLogado;
 
 	public String getEmail() {
 		return email;
@@ -61,5 +62,13 @@ public class LoginBean {
 		}
 
 		return null;
+	}
+
+	public Usuario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
 	}
 }

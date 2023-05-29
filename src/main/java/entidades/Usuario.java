@@ -1,5 +1,6 @@
 package entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Usuario {
+public class Usuario implements Serializable {
 
 	@Id
 	@GeneratedValue
