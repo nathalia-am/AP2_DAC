@@ -1,10 +1,14 @@
 package beans;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import daos.IncidenteDAO;
 import entidades.Incidente;
@@ -17,12 +21,41 @@ public class IncidenteBean {
 	private IncidenteDAO incidenteDAO;
 	private List<Incidente> incidentes;
 	private LoginBean usuarioBean = new LoginBean();
+    private Incidente incidente;
 
 	@PostConstruct
 	public void init() {
 		incidenteDAO = new IncidenteDAO();
 		incidentes = incidenteDAO.listarTodos();
 	}
+	
+
+    public IncidenteBean() {
+        incidente = new Incidente();
+    }
+
+    public Incidente getIncidente() {
+        return incidente;
+    }
+
+    public void setIncidente(Incidente incidente) {
+        this.incidente = incidente;
+    }
+
+    public void cadastrarIncidente() {
+        incidente.setData(new Date());
+        IncidenteDAO incidenteDAO = new IncidenteDAO();
+        incidenteDAO.salvar(incidente);
+        incidente = new Incidente();
+        
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+		try {
+			externalContext.redirect(request.getContextPath() + "/listagem_incidente.xhtml");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
 
 	
 	public List<Incidente> getIncidentes() {
@@ -33,20 +66,11 @@ public class IncidenteBean {
 		return incidentes;
 	}
 	
-    public String visualizarIncidente(Integer id) {
+    public void visualizarIncidente(Integer id) {
         Incidente incidente = incidenteDAO.buscarPorId(id);
-        // Implemente o redirecionamento para a página de visualização detalhada do incidente
-        return null;
     }
 
-    public String editarIncidente(Integer id) {
+    public void editarIncidente(Integer id) {
         Incidente incidente = incidenteDAO.buscarPorId(id);
-        // Implemente o redirecionamento para a página de edição do incidente
-        return null;
-    }
-
-    public boolean isUsuarioLogado(Usuario usuario) {
-        Usuario usuarioLogado = usuarioBean.getUsuarioLogado();
-        return usuarioLogado != null && usuarioLogado.getUserId().equals(usuario.getUserId());
     }
 }

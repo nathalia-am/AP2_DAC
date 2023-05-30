@@ -35,5 +35,33 @@ public class IncidenteDAO {
         em.close();
         return incidente;
     }
+    
+    public void excluir(Incidente incidente) {
+        EntityManager entityManager = JPAUtil.criarEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.remove(entityManager.merge(incidente));
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        } finally {
+            entityManager.close();
+        }
+    }
+  
+    public void editar(Incidente incidente) {
+        EntityManager entityManager = JPAUtil.criarEntityManager();
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.merge(incidente);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        } finally {
+            entityManager.close();
+        }
+    }
 
 }

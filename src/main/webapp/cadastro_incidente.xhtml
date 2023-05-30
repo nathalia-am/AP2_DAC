@@ -12,7 +12,64 @@
 </h:head>
 
 <h:body>
-aaaaaaaaaaaaaaaaaaaaaaaaaa
+<h2>Cadastro de Incidente</h2>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="nome" value="Nome:" />
+            <p:inputText id="nome" value="#{incidenteBean.incidente.nome}" required="false" />
+
+            <h:outputLabel for="sexo" value="Sexo:" />
+            <p:inputText id="sexo" value="#{incidenteBean.incidente.sexo}" required="false" />
+
+            <h:outputLabel for="idade" value="Idade:" />
+            <p:inputText id="idade" value="#{incidenteBean.incidente.idade}" required="false" />
+
+            <h:outputLabel for="serieTurno" value="Série/Turno:" />
+            <p:inputText id="serieTurno" value="#{incidenteBean.incidente.serieTurno}" required="false" />
+
+            <h:outputLabel for="endereco" value="Endereço:" />
+            <p:inputText id="endereco" value="#{incidenteBean.incidente.endereco}" required="false" />
+
+            <h:outputLabel for="nomeAgressor" value="Nome do Agressor:" />
+            <p:inputText id="nomeAgressor" value="#{incidenteBean.incidente.nomeAgressor}" required="false" />
+
+            <h:outputLabel for="sexoAgressor" value="Sexo do Agressor:" />
+            <p:inputText id="sexoAgressor" value="#{incidenteBean.incidente.sexoAgressor}" required="false" />
+
+            <h:outputLabel for="idadeAgressor" value="Idade do Agressor:" />
+            <p:inputText id="idadeAgressor" value="#{incidenteBean.incidente.idadeAgressor}" required="false" />
+
+            <h:outputLabel for="grauParentesco" value="Grau de Parentesco do Agressor:" />
+            <p:inputText id="grauParentesco" value="#{incidenteBean.incidente.grauParentesco}" required="false" />
+
+            <h:outputLabel for="ocupacao" value="Ocupação do Agressor:" />
+            <p:inputText id="ocupacao" value="#{incidenteBean.incidente.ocupacao}" required="false" />
+
+            <h:outputLabel for="racaCorAgressor" value="Raça/Cor do Agressor:" />
+            <p:inputText id="racaCorAgressor" value="#{incidenteBean.incidente.racaCorAgressor}" required="false" />
+
+            <h:outputLabel for="identGeneroAgressor" value="Identidade de Gênero do Agressor:" />
+            <p:inputText id="identGeneroAgressor" value="#{incidenteBean.incidente.identGeneroAgressor}" required="false" />
+
+            <h:outputLabel for="orientSexAgressor" value="Orientação Sexual do Agressor:" />
+            <p:inputText id="orientSexAgressor" value="#{incidenteBean.incidente.orientSexAgressor}" required="false" />
+
+            <h:outputLabel for="escolaridade" value="Escolaridade do Agressor:" />
+            <p:inputText id="escolaridade" value="#{incidenteBean.incidente.escolaridade}" required="false" />
+
+            <h:outputLabel for="relatoIncidente" value="Relato do Incidente:" />
+            <p:inputText id="relatoIncidente" value="#{incidenteBean.incidente.relatoIncidente}" required="false" />
+
+            <h:outputLabel for="violacaoDireito" value="Violação de Direito:" />
+            <p:inputText id="violacaoDireito" value="#{incidenteBean.incidente.violacaoDireito}" required="false" />
+
+            <h:outputLabel for="providencias" value="Providências Tomadas:" />
+            <p:inputText id="providencias" value="#{incidenteBean.incidente.providencias}" required="false" />
+
+            <p:commandButton value="Cadastrar" action="#{incidenteBean.cadastrarIncidente}" />
+            <p:commandButton value="Voltar" action="listagem_incidente" />
+        </h:panelGrid>
+    </h:form>
 </h:body>
 
 </html>

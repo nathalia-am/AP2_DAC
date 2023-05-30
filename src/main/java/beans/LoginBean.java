@@ -1,10 +1,15 @@
 package beans;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+
+import daos.CadastroUsuarioDAO;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -19,6 +24,8 @@ public class LoginBean {
 	private String email;
 	private String senha;
 	private Usuario usuarioLogado;
+	private List<Usuario> usuarios;
+	private CadastroUsuarioDAO cadastroUsuarioDAO;
 
 	public String getEmail() {
 		return email;
@@ -45,7 +52,6 @@ public class LoginBean {
 		try {
 			Usuario usuario = (Usuario) query.getSingleResult();
 
-			// Autenticação bem-sucedida, redirecionar para a página principal
 			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 			HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 			try {
@@ -54,9 +60,6 @@ public class LoginBean {
 				e.printStackTrace();
 			}
 		} catch (NoResultException e) {
-			// Autenticação falhou, exibir mensagem de erro
-			// Você pode adicionar uma variável de mensagem para exibir no XHTML
-			// ou exibir um diálogo de erro usando PrimeFaces
 		} finally {
 			em.close();
 		}
@@ -70,5 +73,13 @@ public class LoginBean {
 
 	public void setUsuarioLogado(Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
+	}
+	
+	public List<Usuario> getUsuarios() {
+		if (usuarios == null) {
+			cadastroUsuarioDAO = new CadastroUsuarioDAO();
+			usuarios = cadastroUsuarioDAO.listarTodos();
+		}
+		return usuarios;
 	}
 }

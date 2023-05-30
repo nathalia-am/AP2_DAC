@@ -15,29 +15,29 @@
 	<h:form id="listagem_incidente">
 
 		<h2>Listagem de Incidentes</h2>
-		<p:button value="Cadastrar Incidente"
-			outcome="cadastro_incidente" />
+		<p:button value="Cadastrar Incidente" outcome="cadastro_incidente" />
+		<p:button value="Listagem Usuários" outcome="listagem_usuario" />
 		<p:panel>
 			<p:dataTable value="#{incidenteBean.incidentes}" var="incidente">
 
 				<p:column headerText="ID">
-					<p:outputLabel value="#{incidente.id}">
-					</p:outputLabel>
+					<h:outputText value="#{incidente.id}" />
 				</p:column>
-				<p:column headerText="Nome do Agressor">
-					<p:outputLabel value="#{incidente.nomeAgressor}">
-					</p:outputLabel>
-				</p:column>
-				<p:column>
 
-					<!--  			<h:commandButton value="Visualizar"
-				action="#{incidenteBean.visualizarIncidente(incidente.id)}" />
-			<h:commandButton value="Editar"
-				action="#{incidenteBean.editarIncidente(incidente.id)}"
-				rendered="#{incidenteBean.isUsuarioLogado(incidente.usuario)}" /> -->
+				<p:column headerText="Nome do Agressor">
+					<h:outputText value="#{incidente.nomeAgressor}" />
 				</p:column>
+
+				<p:column>
+					<p:commandButton value="Visualizar"
+						action="#{incidenteBean.visualizarIncidente(incidente.id)}" />
+					<p:commandButton value="Editar"
+						action="#{incidenteBean.editarIncidente(incidente.id)}" />
+				</p:column>
+
 			</p:dataTable>
 		</p:panel>
+
 	</h:form>
 </h:body>
 
